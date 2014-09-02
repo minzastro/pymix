@@ -35,7 +35,7 @@ Unittests for the Pymix package.
 import unittest
 import copy
 import random
-import numpy as np
+from core.util.collections import arrays as np
 
 from core import BaseTest
 from core.distributions.discrete import DiscreteDistribution
@@ -45,7 +45,6 @@ from core.distributions.multinormal import MultiNormalDistribution
 from core.distributions.normal import NormalDistribution
 from core.distributions.product import ProductDistribution
 from core.priors.normal_gamma import NormalGammaPrior
-from core.pymix_util import mixextend
 from core.pymix_util.errors import InvalidDistributionInput
 from core.mixture import modelSelection
 from core.models.bayes import BayesMixtureModel

@@ -27,7 +27,7 @@ ABS_EPSILON = sys.float_info.min*2  # *2 FOR SAFETY
 
 if DEBUG_STRANGMAN:
     try:
-        import numpy as np
+        from core.util.collections import arrays as np
         from scipy import stats
         import scipy
     except Exception, e:

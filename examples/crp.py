@@ -3,7 +3,7 @@ import random
 import copy
 import math
 import pygsl.sf
-import numpy as np
+from core.util.collections import arrays as np
 import pygsl.rng
 import sys
 

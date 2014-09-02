@@ -1,6 +1,6 @@
 ## function sumlogs is borrowed from GQLMixture.py
 import math
-import numpy as np
+from core.util.collections import arrays as np
 from core.pymix_util import mixextend
 from core.pymix_util.maths import sum_logs
 

@@ -3,7 +3,7 @@ import copy
 import time
 import gc
 
-import numpy as np
+from core.util.collections import arrays as np
 
 from core.distributions.discrete import DiscreteDistribution
 from core.distributions.normal import NormalDistribution

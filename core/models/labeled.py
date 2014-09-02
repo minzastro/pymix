@@ -1,5 +1,5 @@
 import random
-import numpy as np
+from core.util.collections import arrays as np
 from core.pymix_util.errors import InvalidPosteriorDistribution
 from core.pymix_util.constrained_dataset import ConstrainedDataSet
 from core.pymix_util.dataset import DataSet

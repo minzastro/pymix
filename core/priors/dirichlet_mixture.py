@@ -1,5 +1,5 @@
 import copy
-import numpy as np
+from core.util.collections import arrays as np
 from core.distributions.discrete import DiscreteDistribution
 from core.distributions.multinomial import MultinomialDistribution
 from core.pymix_util.errors import InvalidDistributionInput

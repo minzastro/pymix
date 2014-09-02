@@ -1,5 +1,5 @@
 from core import mixture
-import numpy as np
+from core.util.collections import arrays as np
 import random
 
 

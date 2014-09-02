@@ -32,7 +32,7 @@
 Mixtures of Bionomials and Related Distributions
 """
 from mixture import *
-import numpy as np
+from core.util.collections import arrays as np
 import copy
 
 class BernoulliDistribution(ProbDistribution):

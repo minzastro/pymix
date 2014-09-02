@@ -3,7 +3,7 @@ import stats, os, pstat
 reload(stats)
 
 try:
-    import numpy as np as N
+    from core.util.collections import arrays as np as N
 except ImportError:
     pass
 

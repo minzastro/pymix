@@ -35,7 +35,7 @@ e.g. searching for transcription factor binding sites using mixtures of PWMs (po
 """
 
 from core import mixture
-import numpy as np
+from core.util.collections import arrays as np
 import re
 
 

@@ -1,6 +1,6 @@
 from random import random
 import math
-import numpy as np
+import core.util.collections.arrays.array as np
 from core.distributions.prob import ProbDistribution
 from core.pymix_util.errors import InvalidDistributionInput
 

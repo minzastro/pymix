@@ -3,7 +3,7 @@ import math
 import random
 import sys
 
-import numpy as np
+from core.util.collections import arrays as np
 
 from ..pymix_util import mixextend
 from ..distributions.prob import ProbDistribution

@@ -1,6 +1,6 @@
 import copy
 import math
-import numpy as np
+from core.util.collections import arrays as np
 from core.distributions.normal import NormalDistribution
 from core.priors.prior import PriorDistribution
 from core.pymix_util import mixextend

@@ -33,7 +33,7 @@
 Mixtures of HMMs (requires the GHMM package)
 """
 import copy
-import numpy as np
+from core.util.collections import arrays as np
 
 import ghmm
 from .distributions.prob import ProbDistribution

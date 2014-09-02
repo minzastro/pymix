@@ -1,5 +1,5 @@
 import copy
-import numpy as np
+from core.util.collections import arrays as np
 import random
 import sys
 from core.distributions.product import ProductDistribution

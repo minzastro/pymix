@@ -1,8 +1,7 @@
 import random
 
-from np.linalg import linalg as la
-from np.oldnumeric.functions import argmax
-import numpy as np
+from numpy.linalg import linalg as la
+from core.util.collections import arrays as np
 import scipy.stats
 from core.distributions.prob import ProbDistribution
 
@@ -117,7 +116,7 @@ class LinearGaussianDistribution(ProbDistribution):
         try:
             betashort = np.dot(np.linalg.inv(beta_denominator), beta_numerator)
             self.beta = np.concatenate(([mean], betashort), axis=1)
-        except la.LinAlgError:
+        except Exception, e:
             raise EmptyComponent, "Empty Component: Singular Matrix"
 
         # Sigma estimation
@@ -392,7 +391,7 @@ def evaluateRegression(mix, data, type=2, train=[], sparse=[]):
         predyaux = np.array(predyaux).T
         posteriorpred = np.array(posteriorpred).T
         for i, d in enumerate(data):
-            predy = predyaux[i, argmax(posteriorpred[i, :])]
+            predy = predyaux[i, np.argmax(posteriorpred[i, :])]
 
     # estimate pearson
     [r, p] = scipy.stats.pearsonr(y, predy)

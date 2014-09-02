@@ -42,7 +42,7 @@ organized in a hierarchical fashion.
 """
 import sys
 import logging
-import numpy as np
+from core.util.collections import arrays as np
 
 from core.pymix_util.stats import get_loglikelihood
 from core.pymix_util import setPartitions

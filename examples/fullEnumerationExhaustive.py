@@ -41,7 +41,7 @@ components, this is only feasible for quite small data sets.
 
 import copy
 
-import numpy as np
+from core.util.collections import arrays as np
 
 from core.distributions.discrete import DiscreteDistribution
 from core.models.mixture import MixtureModel

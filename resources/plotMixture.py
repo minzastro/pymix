@@ -34,7 +34,7 @@ PlotMixture implements visualization functions for mixture models and clustering
 
 import pylab
 from core import mixture
-import numpy as np
+from core.util.collections import arrays as np
 
 
 

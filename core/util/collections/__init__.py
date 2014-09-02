@@ -1,6 +1,6 @@
 import types
 import math
-import numpy as np
+# from core.util.collections import arrays as np
 from ..collections.multiset import Multiset
 from ..struct import Null
 

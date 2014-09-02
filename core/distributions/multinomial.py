@@ -1,6 +1,6 @@
 import copy
 import random
-import numpy as np
+from core.util.collections import arrays as np
 from core import assertAlmostEqual
 from core.distributions.prob import ProbDistribution
 from core.pymix_util.errors import InvalidPosteriorDistribution, InvalidDistributionInput

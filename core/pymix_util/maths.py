@@ -1,6 +1,6 @@
 ## function sumlogs is borrowed from GQLMixture.py
 
-import numpy as np
+from core.util.collections import arrays as np
 
 
 def sumlogs_purepy(a):

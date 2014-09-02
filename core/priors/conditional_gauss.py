@@ -1,5 +1,5 @@
 import math
-import numpy as np
+from core.util.collections import arrays as np
 from core.distributions.conditional_gauss import ConditionalGaussDistribution
 from core.pymix_util import mixextend
 from core.pymix_util.errors import InvalidDistributionInput

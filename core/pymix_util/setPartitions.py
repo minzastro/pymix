@@ -40,7 +40,7 @@
 """
 import random
 
-import numpy as np
+from core.util.collections import arrays as np
 
 def init_first(l):
     kap = np.zeros(l)

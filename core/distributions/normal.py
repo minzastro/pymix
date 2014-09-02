@@ -2,7 +2,7 @@ import copy
 import random
 import math
 from scipy import stats
-import numpy as np
+from core.util.collections import arrays as np
 from .prob import ProbDistribution
 from ..pymix_util.errors import InvalidPosteriorDistribution, InvalidDistributionInput
 from ..pymix_util.dataset import DataSet

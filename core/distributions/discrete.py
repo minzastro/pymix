@@ -1,6 +1,6 @@
 import copy
 import random
-import numpy as np
+from core.util.collections import arrays as np
 from core.distributions.multinomial import MultinomialDistribution
 from core.pymix_util.errors import InvalidPosteriorDistribution, InvalidDistributionInput
 from core.pymix_util.dataset import DataSet

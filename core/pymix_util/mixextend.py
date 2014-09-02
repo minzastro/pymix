@@ -22,7 +22,7 @@
 ################################################################################
 from math import exp, sqrt, log
 
-import numpy as np
+from core.util.collections import arrays as np
 import scipy
 from scipy import stats, special
 from core import assertAlmostEqual

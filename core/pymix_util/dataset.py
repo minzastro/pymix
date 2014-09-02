@@ -1,6 +1,6 @@
 import copy
 import re
-import numpy as np
+from core.util.collections import arrays as np
 import sys
 from core.pymix_util.errors import InvalidDistributionInput
 from core.parse import numerize

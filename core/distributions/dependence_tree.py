@@ -1,4 +1,4 @@
-import numpy as np
+from core.util.collections import arrays as np
 from core.distributions.conditional_gauss import ConditionalGaussDistribution
 from core.pymix_util.dataset import DataSet
 
