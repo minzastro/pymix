@@ -322,9 +322,9 @@ class DataSetTests(BaseTest):
 
         dat.internalInit(m)
 
-        self.assertEqual(dat.internalData[1].tolist(), [0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0])
-        self.assertEqual(dat.internalData[12].tolist(), [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
-        self.assertEqual(dat.internalData[19].tolist(), [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0])
+        self.assertEqual(dat.internalData[1], [0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0])
+        self.assertEqual(dat.internalData[12], [0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
+        self.assertEqual(dat.internalData[19], [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0])
 
 
     def testsimpledatasetgaussian(self):
