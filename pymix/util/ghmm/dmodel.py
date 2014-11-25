@@ -120,9 +120,9 @@ class ghmm_dmodel():
         else:
             self.label = None
 
-        self.label_alphabet = None #ghmm_alphabet*
+        self.label_alphabet = None
 
-        self.alphabet = None #ghmm_alphabet*
+        self.alphabet = None
 
 
     def getStateName(self, index):
@@ -142,7 +142,8 @@ class ghmm_dmodel():
         seed,
         global_len,
         seq_number,
-        Tmax
+        Tmax,
+        native=False
     ):
 
 
@@ -1502,13 +1503,6 @@ class ghmm_dmodel():
         self.topo_order_length = len(self.topo_order)
 
 
-    # def ghmm_cmodel_calc_b(state, omega):
-    #     b=0
-    #     for m in range(state.M):
-    #         b += state.c[m] * density_func[state.e[m].type](state.e + m, omega)
-    #     return b
-
-
     def normalize(self):
     # Scales the output and transitions probs of all states in a given model
         pi_sum = 0.0
@@ -1573,7 +1567,7 @@ class ghmm_dmodel():
                         self.s[i].b[j] = (1.0 - background_weight[i]) * self.s[i].b[j] + background_weight[i] * self.bp.b[self.background_id[i]][j]
 
 
-    def label_generate_sequences(self, seed, len, seq_number, Tmax):
+    def label_generate_sequences(self, seed, len, seq_number, Tmax, native=False):
         n = 0
 
         sq = sequence(seq_number)

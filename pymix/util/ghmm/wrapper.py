@@ -8,10 +8,8 @@
 # Changes made by: Kyle Lahnakoski (kyle@lahnakoski.com)
 #
 ################################################################################
-from copy import deepcopy
-from math import exp, log, sqrt
+from math import exp
 from pyLibrary.maths import Math
-from pymix.util.ghmm.emissions import Emission
 from pymix.util.logs import Log
 
 
@@ -27,11 +25,7 @@ GHMM_EPS_PREC = 1e-8
 GHMM_PENALTY_LOGP = -500.0
 
 
-normal = 0        #< gaussian
-normal_right = 1  #< right tail
-normal_approx = 2 #< approximated gaussian
-normal_left = 3   #< left tail
-uniform = 4
+
 binormal = 5      #< two dimensional gaussian
 multinormal = 6   #< multivariate gaussian
 density_number = 7 #< number of density types, has to stay last
@@ -94,10 +88,6 @@ def matrix_alloc(n, m):
 
 def int_matrix_alloc_row(rows):
     return [0] * rows
-
-
-def c_emission_array_alloc(n):
-    return [Emission() for i in range(n)]
 
 
 def double_array_alloc(length):
@@ -333,34 +323,6 @@ def set_to_boolean_or(pccc, seq_index, offset_x, offset_y):
     pccc.get_class = boolean_or
 
 
-class ghmm_alphabet:
-    def __init__(self, length, description):
-        self.id = 0
-        self.description = description
-        self.size = length
-        self.symbols = [None] * length
-
-
-    def setSymbol(self, index, value):
-        self.symbols[index] = str(value)
-
-    def getSymbol(self, index):
-        return self.symbols[index]
-
-    # class ghmm_dpmodel_class_change_context:
-#
-# def __init(self):
-# # Names of class change module/function (for python callback)
-# python_module=""
-# python_function=""
-#
-# # pointer to class function called with seq X, Y and resp indices
-# # in the void you can pass the user data
-# int (*get_class)(struct ghmm_dpmodel*, ghmm_dpseq*, ghmm_dpseq*, int, int,void*)
-#
-# # space for any data necessary for class switch, USER is RESPONSIBLE
-# void* user_data
-#
 
 class threshold_user_data():
     def __init__(self):
@@ -395,27 +357,6 @@ class ghmm_dpseq():
         return self.d_value[index]
 
 
-def ighmm_cholesky_decomposition(dim, cov):
-    sigmacd = deepcopy(cov)
-
-    for row in range(dim):
-        # First compute U[row][row]
-        total = cov[row][row]
-        for j in range(row - 1):
-            total -= sigmacd[j][row] * sigmacd[j][row]
-        if total > DBL_MIN:
-            sigmacd[row][row] = sqrt(total)
-            # Now find elements sigmacd[row*dim+k], k > row.
-            for k in range(row + 1, dim):
-                total = cov[row][k]
-                for j in range(row - 1):
-                    total -= sigmacd[j][row] * sigmacd[j][k]
-                sigmacd[row][k] = total / sigmacd[row][row]
-
-        else:  # blast off the entire row.
-            for k in range(row, dim):
-                sigmacd[row][k] = 0.0
-    return sigmacd
 
 class ghmm_dsmodel():
     def __init__(self):

@@ -50,20 +50,23 @@ class MultinomialDistribution(ProbDistribution):
     Multinomial Distribution
     """
 
-    def __init__(self, p, M, phi, alphabet=None, parFix=None):
+    def __init__(self, dimension, M, phi, alphabet=None, parFix=None):
         """
         Constructor
 
         @param M: number of possible outcomes (0 to M-1)
-        @param p: number of values in each sample
+        @param dimension: number of values in each sample
         @param phi:= discrete distribution of N objects
         @param alphabet: Alphabet object (optional)
         @param parFix: list of flags to determine if any elements of phi should be fixed
         """
         assert len(phi) == M, "Invalid number of parameters for MultinomialDistribution."
-        assert abs((1.0 - sum(phi))) < 1e-12, str(phi) + ": " + str(1.0 - sum(phi))  #  check parameter validity
+        try:
+            assert abs((1.0 - sum(phi))) < 1e-12, str(phi) + ": " + str(1.0 - sum(phi))  #  check parameter validity
+        except Exception, e:
+            raise e
 
-        self.p = p  # length of input vectors, corresponds to p in MixtureModel
+        self.dimension = dimension  # length of input vectors, corresponds to p in MixtureModel
         self.M = M
         self.suff_p = M  # length of the sufficient statistics, equal to size of alphabet
 
@@ -91,16 +94,16 @@ class MultinomialDistribution(ProbDistribution):
     def __eq__(self, other):
         res = False
         if isinstance(other, MultinomialDistribution):
-            if other.p == self.p and other.M == self.M and np.allclose(other.phi, self.phi):
+            if other.dimension == self.dimension and other.M == self.M and np.allclose(other.phi, self.phi):
                 res = True
         return res
 
     def __copy__(self):
         "Interface for the copy.copy function"
-        return MultinomialDistribution(self.p, self.M, copy.deepcopy(self.phi), self.alphabet, parFix=self.parFix)
+        return MultinomialDistribution(self.dimension, self.M, copy.deepcopy(self.phi), self.alphabet, parFix=self.parFix)
 
     def __str__(self):
-        outstr = "Multinom(M = " + str(self.M) + ", N = " + str(self.p) + " ) : " + str(self.phi) #+"\n"
+        outstr = "Multinom(M = " + str(self.M) + ", N = " + str(self.dimension) + " ) : " + str(self.phi) #+"\n"
         #outstr += str(self.alphabet) + "\n"
         return outstr
 
@@ -131,9 +134,9 @@ class MultinomialDistribution(ProbDistribution):
 
         return res
 
-    def sample(self):
+    def sample(self, native=False):
         sample = []
-        for i in range(self.p):
+        for i in range(self.dimension):
             sum = 0.0
             p = random.random()
             for k in range(self.M):
@@ -189,7 +192,7 @@ class MultinomialDistribution(ProbDistribution):
             self.phi[ind] = (self.phi[ind] * fix_phi) / dsum
 
     def isValid(self, x):
-        if sum(map(self.alphabet.isAdmissable, x)) != self.p:
+        if sum(map(self.alphabet.isAdmissable, x)) != self.dimension:
             raise InvalidDistributionInput, "\n\tInvalid data: " + str(x) + " in MultinomialDistribution(" + str(self.alphabet.listOfCharacters) + ")."
 
     def formatData(self, x):
@@ -210,7 +213,7 @@ class MultinomialDistribution(ProbDistribution):
 
     def flatStr(self, offset):
         offset += 1
-        return "\t" * offset + ";Mult;" + str(self.p) + ";" + str(self.M) + ";" + str(self.phi.tolist()) + ";" + str(self.alphabet.listOfCharacters) + ";" + str(self.parFix.tolist()) + "\n"
+        return "\t" * offset + ";Mult;" + str(self.dimension) + ";" + str(self.M) + ";" + str(self.phi.tolist()) + ";" + str(self.alphabet.listOfCharacters) + ";" + str(self.parFix.tolist()) + "\n"
 
     def posteriorTraceback(self, x):
         return self.pdf(x)
