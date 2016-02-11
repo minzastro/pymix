@@ -34,8 +34,10 @@
 #       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
 ################################################################################
+from numpy import ndarray
+from pymix.util.dataset import DataSet
 
-class ProbDistribution:
+class ProbDistribution(object):
     """
     Base class for all probability distributions.
     """
@@ -184,4 +186,13 @@ class ProbDistribution:
         @param weights: list of weights, need not to sum up to one
         """
         raise NotImplementedError
-
+    
+    def data_numpy(self, data):
+        if isinstance(data, DataSet):
+            x = data.internalData
+        elif isinstance(data, ndarray):
+            x = data
+        else:
+            raise TypeError,"Unknown/Invalid input type."
+        return x
+        

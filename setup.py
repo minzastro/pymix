@@ -51,7 +51,7 @@ def guess_include_dirs():
 
     pypath = prefix + '/include/python' + pyvs  # path to Python.h
 
-    numpypath = prefix + '/lib/python' + pyvs + '/site-packages/numpy/core/include/numpy'  # path to arrayobject.h
+    numpypath = prefix + '/lib64/python' + pyvs + '/site-packages/numpy/core/include/numpy'  # path to arrayobject.h
 
     return [pypath, numpypath]
 

@@ -414,7 +414,9 @@ class MixtureModel(ProbDistribution):
 
         return [np.array(label), ls]
 
-    def EM(self, data, max_iter, delta, silent=False, mix_pi=None, mix_posterior=None, tilt=0, EStep=None, EStepParam=None):
+    def EM(self, data, max_iter, delta, silent=False, 
+           mix_pi=None, mix_posterior=None, tilt=0, 
+           EStep=None, EStepParam=None):
         """
         Reestimation of mixture parameters using the EM algorithm.
 
@@ -462,15 +464,13 @@ class MixtureModel(ProbDistribution):
         log_p = 0.0
         while 1:
             [log_l, log_p] = EStep(data, mix_posterior, mix_pi, EStepParam)
-            if log_p_old != -1.0 and not silent and step != 0:
-                if tilt and step <= self.nr_tilt_steps:
-                    sys.stdout.write("TILT Step " + str(step) + ": log likelihood: " + str(log_p) + "\n")
-                else:
-                    sys.stdout.write("Step " + str(step) + ": log likelihood: " + str(log_p_old) + "   (diff=" + str(diff) + ")\n")
-
             # checking for convergence
             diff = (log_p - log_p_old)
-
+            if log_p_old != -1.0 and not silent and step != 0:
+                if tilt and step <= self.nr_tilt_steps:
+                    sys.stdout.write("TILT Step %s: log likelihood: %s\n" % (step, log_p))
+                else:
+                    sys.stdout.write("Step %s: log likelihood: %s (diff=%s)\n" % (step, log_p_old, diff))
             if diff < 0.0 and step > 1 and abs(diff / log_p_old) > self.err_tol:
                 print log_p, log_p_old, diff, step, abs(diff / log_p_old)
                 print "WARNING: EM divergent."
@@ -670,7 +670,6 @@ class MixtureModel(ProbDistribution):
         # computing log posterior distribution
         for i in range(self.G):
             #print i,self.components[i].pdf(data).tolist()
-
             # XXX cache redundant pdfs for models with CSI structure
             pdf = self.components[i].pdf(data)
             log_l[i] = log_pi[i] + pdf
